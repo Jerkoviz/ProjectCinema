@@ -1,0 +1,30 @@
+﻿@*@using ProjectCinema.Models;
+@model SearchTheater;
+
+<div>
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <td class="col-4">Name</td>
+                <td class="col-4">City</td>
+                <td class="col-4">Adrress</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var el in Model.Results)
+            {
+                <tr>
+                    <td class="col-4">
+                        <a href="#">@el.Name</a>
+                    </td>
+                    <td class="col-4">@el.City</td>
+                    <td class="col-4">@el.Address</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <div>
+        <button id="movietheater_create">Enter new movie theater</button>
+    </div>
+</div>*@

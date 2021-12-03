@@ -1,0 +1,26 @@
+﻿@using ProjectCinema.Models
+@model SearchMovieViewModel
+
+<section>
+    <div class="row">
+        <div class="col-12">
+            <ul>
+                @foreach (var item in Model.Results)
+                {
+                <li>
+                    <div>Movie Name: @item.MovieName</div>
+                    <div>MInutes of play: @item.MinutesOfPlay</div>
+                    <div>Genre: @item.Genre</div>
+                    <div>Year of making: @item.YearOfMaking</div>
+                    <img src="@("~/image/"+item.Image.ImageName)" asp-append-version="true" width="250" height="250" alt="Dune" />
+                    @*@if (User.IsInRole())
+        {
+        <div>Action</div>
+        }*@
+                </li>
+                }
+
+            </ul>
+</div>
+</div>
+</section>

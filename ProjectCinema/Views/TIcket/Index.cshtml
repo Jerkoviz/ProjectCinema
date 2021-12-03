@@ -1,0 +1,17 @@
+﻿@using ProjectCinema.Models
+@model TicketViewModel
+
+<form asp-controller="Ticket" asp-action="Create" method="post">
+    <div>
+        <h2>Enter tickets info</h2>
+        <div class="col-12">
+            <label>Price</label>
+            <input type="text" asp-for="Price" />
+        </div>
+        <div class="col-12">
+            <label>Ammount</label>
+            <input type="text" asp-for="Ammount" />
+        </div>
+    </div>
+    <button class="btn btn-light mx-auto" type="submit">Submit</button>
+</form>
