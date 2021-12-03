@@ -1,22 +1,19 @@
 ﻿@using ProjectCinema.Models
 @model HeaderViewModel
 <div class="text-center">
-    <h1>Welcome to our page!</h1>
-    <div class="text-left">
+    <div class="text-left pt-2">
         <form data-ajax="true"
-              data-ajax-method="post"              
+              data-ajax-method="post"
               asp-controller="Movie"
               asp-action="Search"
               data-ajax-update="#SearchResults">
 
             <div class="form-group row align-items-md-end text-md-right text-xs-left">
-                
                 <div class="col-sm-7">
-                    <input type="text" name="searchTerm" id="term" class="form-control form-control-overide"/>
+                    <input type="text" name="searchTerm" id="term" class="form-control form-control-overide" />
                 </div>
-
                 <div class="col-sm-3">
-                    <button  class="btn btn-primary btn- w-100" id="submit-search" type="submit">Search Movie</button> 
+                    <button class="btn btn-primary btn- w-100" id="submit-search" type="submit">Search Movie</button>
                 </div>
             </div>
         </form>
@@ -26,44 +23,48 @@
                 <div id="SearchResults"></div>
             </div>
         </div>
-
-        <ul style="list-style: none">
-            @*<li>
-            <a asp-controller="Movie" asp-action="GetAll">List of all movies</a>
-        </li>*@
-            <li>
-                <a class="dropdown-item" asp-controller="Movie" asp-action="Index" id="create-movie">Add new movie</a>
-            </li>
-            <li>
-                <a class="dropdown-item" asp-controller="Ticket" asp-action="Index">Create new tickets</a>
-            </li>
-            <li>
-                <a class="dropdown-item" asp-controller="ScreeningTime" asp-action="Index">Create new dates</a>
-            </li>
-            <li>
-                <a class="dropdown-item" asp-controller="CurrentlyInCinema" asp-action="Index">Create currently in cinema</a>
-            </li>
-        </ul>
-
-        @*<nav class="col-lg-12 navbar navbar-expand-md navbar-dark pl-1 pt-2 pb-2" style="z-index: 10000000; display: inline-block">
-                <button class="btn btn-border" style="background-color: green; border-color:yellowgreen" data-toggle="dropdown" data-target="#mynav" aria-expanded="false" aria-controls="mynav" id="menu_btn">
-                    <span class="navbar-toggler-icon menuIcon material-icons"></span>
-                </button>
-                <div class="collapse" id="mynav">
-                    <ul class="dropdown-menu" id="burgerUl" style="background-color: green; ">
-                        <li class="dropdown-item li">
-                            <a class="dropdown-link fa fa-home" href=""> Home</a>
-                        </li>
-
-                        <li class="dropdown-item li">
-                            <a class="dropdown-link fa fa-info"> Detailed view medical</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>*@
     </div>
+    <div class="text-left">
+        <nav class="navbar navbar-expand-md navbar-dark" style="display: inline-block">
+            <button class="btn btn-border" style="background-color: #333; color:white" data-toggle="dropdown" data-target="mynav" aria-expanded="false" aria-controls="mynav">
+                Insert data
+            </button>
+            <div class="collapse" id="mynav"></div>
+            <ul class="dropdown-menu" style="list-style: none">
+                <li class="dropdown-item li">
+                    <a class="dropdown-link" asp-controller="Movie" asp-action="Index" id="create-movie">Add new movie</a>
+                </li>
+                <li class="dropdown-item li">
+                    <a class="dropdown-link" asp-controller="Ticket" asp-action="Index">Create new tickets</a>
+                </li>
+                <li class="dropdown-item li">
+                    <a class="dropdown-link" asp-controller="ScreeningTime" asp-action="Index">Create new dates</a>
+                </li>
+                <li class="dropdown-item li">
+                    <a class="dropdown-link" asp-controller="CurrentlyInCinema" asp-action="Index">Create currently in cinema</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    @*<nav class="col-lg-12 navbar navbar-expand-md navbar-dark pl-1 pt-2 pb-2" style="z-index: 10000000; display: inline-block">
+            <button class="btn btn-border" style="background-color: green; border-color:yellowgreen" data-toggle="dropdown" data-target="#mynav" aria-expanded="false" aria-controls="mynav" id="menu_btn">
+                <span class="navbar-toggler-icon menuIcon material-icons"></span>
+            </button>
+            <div class="collapse" id="mynav">
+                <ul class="dropdown-menu" id="burgerUl" style="background-color: green; ">
+                    <li class="dropdown-item li">
+                        <a class="dropdown-link fa fa-home" href=""> Home</a>
+                    </li>
+
+                    <li class="dropdown-item li">
+                        <a class="dropdown-link fa fa-info"> Detailed view medical</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>*@
 </div>
+
 
 
 @section scripts

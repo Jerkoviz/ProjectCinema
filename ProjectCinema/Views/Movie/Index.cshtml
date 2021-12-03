@@ -1,34 +1,62 @@
 ﻿@using ProjectCinema.Models
 @model MovieViewModel
 
-<form asp-controller="Movie" asp-action="Create" method="post" enctype="multipart/form-data">
-    <div class="modal-body">
-        <h2>Enter new movie</h2>
-        <div class="col-12">
-            <label>Movie Name</label>
-            <input type="text" asp-for="MovieName" />
+
+<div class="col-12 text-center text-white">
+    <form asp-controller="Movie" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+            <h2>Enter new movie</h2>
+            <div class="col-12">
+                <label>Movie Name</label>
+                <input type="text" asp-for="MovieName" />
+            </div>
+            <div class="col-12">
+                <label>Minutes of play</label>
+                <input type="text" asp-for="MinutesOfPlay" />
+            </div>
+            <div class="col-12">
+                <label>Genre</label>
+                <input type="text" asp-for="Genre" />
+            </div>
+            <div class="col-12">
+                <label>Year of making</label>
+                <input type="text" asp-for="YearOfMaking" />
+            </div>
+            <div class="col-12">
+                <label asp-for="Image.ImageFile" class="control-label">Image</label>
+                <input asp-for="Image.ImageFile" />
+                <span asp-validation-for="Image.ImageFile" class="text-danger"></span>
+                <label></label>
+            </div>
         </div>
-        <div class="col-12">
-            <label>Minutes of play</label>
-            <input type="text" asp-for="MinutesOfPlay" />
-        </div>
-        <div class="col-12">
-            <label>Genre</label>
-            <input type="text" asp-for="Genre" />
-        </div>
-        <div class="col-12">
-            <label>Year of making</label>
-            <input type="text" asp-for="YearOfMaking" />
-        </div>
-        <div class="col-12">
-            <label asp-for="Image.ImageFile" class="control-label">Image</label>            
-            <input asp-for="Image.ImageFile"/>
-            <input type="text" asp-for="Image.Title" />
-            <span asp-validation-for="Image.ImageFile" class="text-danger"></span>
-            <label></label>
-        </div>
-    </div>
-    
         <button class="btn btn-light mx-auto" type="submit">Submit</button>
-    
-</form>
+    </form>
+</div>
+
+
+<table class="table text-white pt-2">
+    <thead class="thead-light mt-2">
+        <tr>
+            @*<th scope="col">#</th>*@
+            <th scope="col">Movie Name</th>
+            <th scope="col">Minutes of play</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Year of making</th>
+        </tr>
+    </thead>
+    @if (Model.SearchViewModel.Results != null)
+    {
+       
+        @foreach (var item in Model.SearchViewModel.Results)
+        {
+            <tbody class="thead-light">
+                <tr>                    
+                    <td>@item.MovieName</td>
+                    <td>@item.MinutesOfPlay</td>
+                    <td>@item.Genre</td>
+                    <td>@item.YearOfMaking</td>
+                </tr>
+            </tbody>
+        }
+    }
+</table>

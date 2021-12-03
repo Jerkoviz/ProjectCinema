@@ -24,9 +24,13 @@ namespace ProjectCinema.Controllers
         }
 
         // GET: MovieController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View();
+            var movies = manager.GetAll();
+            var model = new SearchMovieViewModel { Results = mapper.Map<List<SearchResultViewModel>>(movies) };
+            var movie = new MovieViewModel { SearchViewModel = model };
+
+            return View(movie);
         }
 
         // GET: MovieController/Details/5
@@ -38,15 +42,17 @@ namespace ProjectCinema.Controllers
 
             var movieModel = manager.GetBySearch(searchTerm);
             var model = new SearchMovieViewModel { Results = mapper.Map<List<SearchResultViewModel>>(movieModel) };
-
-            //return PartialView("Views/Shared/Components/MovieTheater/Default.cshtml", model);
+            
             return RedirectToAction("Index", "Home", model);
         }
 
         // GET: MovieController/Create
-        public ActionResult GetAll()
+        public IActionResult GetAll()
         {
-            return View();
+            var movies = manager.GetAll();
+            var model = new SearchMovieViewModel { Results = mapper.Map<List<SearchResultViewModel>>(movies) };
+
+            return View(model);
         }
 
         // POST: MovieController/Create
@@ -54,20 +60,25 @@ namespace ProjectCinema.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MovieViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-               string  fileName =Path.GetFileName(model.Image.ImageFile.FileName);
-                
-               var movie = mapper.Map<Movie>(model);
+                string fileName = string.Empty;
+
+                if (Path.GetFileName(model.Image.ImageFile.FileName) == null)
+                {
+                    fileName = "newMovie";
+                }
+                fileName = Path.GetFileName(model.Image.ImageFile.FileName);
+
+                var movie = mapper.Map<Movie>(model);
 
                 manager.Create(movie);
 
                 return RedirectToAction("Index", "Home");
             }
-            catch
-            {
-                return View();
-            }
+           
+             return View();
+            
         }
 
         // GET: MovieController/Edit/5
