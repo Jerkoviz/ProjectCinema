@@ -1,5 +1,6 @@
 ﻿using ProjectCinema.App.Domain;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,5 +16,6 @@ namespace ProjectCinema.Models
         public Image Image { get; set; }
 
         public SearchMovieViewModel SearchViewModel { get; set; }
+        public List<MovieViewModel> Movies { get; set; }
     }
 }

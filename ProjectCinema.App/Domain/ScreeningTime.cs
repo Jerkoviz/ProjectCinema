@@ -9,6 +9,6 @@ namespace ProjectCinema.App.Domain
     public class ScreeningTime
     {
         public int ScreeningTimeId { get; set; }
-        public DateTime MovieTime { get; set; }
+        public DateTime? MovieTime { get; set; }
     }
 }

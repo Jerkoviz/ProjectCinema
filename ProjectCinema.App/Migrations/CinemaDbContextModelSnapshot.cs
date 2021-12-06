@@ -240,6 +240,26 @@ namespace ProjectCinema.App.Migrations
                     b.ToTable("CinemaMovie");
                 });
 
+            modelBuilder.Entity("ProjectCinema.App.Services.Entities.CinemaRepertoire", b =>
+                {
+                    b.Property<int>("CinemaRepertoireId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeOfProjection")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CinemaRepertoireId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("CinemaRepertoire");
+                });
+
             modelBuilder.Entity("ProjectCinema.App.Services.Entities.CurrentlyInCinema", b =>
                 {
                     b.Property<int>("CurrentlyInCinemaId")
@@ -340,7 +360,7 @@ namespace ProjectCinema.App.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("MovieTime")
+                    b.Property<DateTime?>("MovieTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ScreeningTimeId");
@@ -454,6 +474,17 @@ namespace ProjectCinema.App.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("MovieTheater");
+                });
+
+            modelBuilder.Entity("ProjectCinema.App.Services.Entities.CinemaRepertoire", b =>
+                {
+                    b.HasOne("ProjectCinema.App.Services.Entities.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("ProjectCinema.App.Services.Entities.CurrentlyInCinema", b =>

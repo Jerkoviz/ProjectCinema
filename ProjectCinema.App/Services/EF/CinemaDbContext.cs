@@ -25,5 +25,6 @@ namespace ProjectCinema.App.Services.EF
         public DbSet<ScreeningTime> Dates { get; set; }
         public DbSet<CurrentlyInCinema> CurrentlyInCinemas { get; set; }
         public DbSet<ScreeningTime> ScreeningTimes { get; set; }
+        public DbSet<CinemaRepertoire> CinemaRepertoires { get; set; }
     }
 }

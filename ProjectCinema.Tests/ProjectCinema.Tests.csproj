@@ -48,7 +48,7 @@
   <ItemGroup>
     <Reference Update="Microsoft.Data.Tools.Components, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>true</Private>
-      <SpecificVersion>true</SpecificVersion>
+      <SpecificVersion>false</SpecificVersion>
     </Reference>
   </ItemGroup>
 </Project>

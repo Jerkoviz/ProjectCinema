@@ -12,5 +12,7 @@ namespace ProjectCinema.Models
         public int Ammount { get; set; }
 
         public bool IsAvaliable { get; set; }
+
+        public List<TicketViewModel> Tickets { get; set; }
     }
 }

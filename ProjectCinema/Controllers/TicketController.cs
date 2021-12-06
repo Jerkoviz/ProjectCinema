@@ -23,7 +23,10 @@ namespace ProjectCinema.Controllers
         public IActionResult Index()
         {
             ViewBag.Title = "Ticket";
-            return View();
+            var tickets = manager.GetAll();
+            var model = new TicketViewModel { Tickets = mapper.Map<List<TicketViewModel>>(tickets) };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -32,7 +35,7 @@ namespace ProjectCinema.Controllers
             var model = mapper.Map<Ticket>(ticket);
             manager.Create(model);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
     }
 }

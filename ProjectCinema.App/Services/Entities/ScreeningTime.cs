@@ -11,7 +11,7 @@ namespace ProjectCinema.App.Services.Entities
     public class ScreeningTime
     {
         public int ScreeningTimeId { get; set; }
-        public DateTime MovieTime { get; set; }
+        public DateTime? MovieTime { get; set; }
         
     }
 }

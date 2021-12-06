@@ -27,7 +27,7 @@ namespace ProjectCinema.App.Areas.Ticket
 
         public List<Domain.Ticket> GetAll()
         {
-            throw new NotImplementedException();
+            return ticket.GetAll();
         }
 
         public Domain.Ticket GetById(int id)

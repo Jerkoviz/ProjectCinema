@@ -27,10 +27,9 @@ namespace ProjectCinema.Controllers
         public IActionResult Index()
         {
             var movies = manager.GetAll();
-            var model = new SearchMovieViewModel { Results = mapper.Map<List<SearchResultViewModel>>(movies) };
-            var movie = new MovieViewModel { SearchViewModel = model };
+            var model = new MovieViewModel { Movies = mapper.Map<List<MovieViewModel>>(movies) };           
 
-            return View(movie);
+            return View(model);
         }
 
         // GET: MovieController/Details/5
@@ -74,10 +73,10 @@ namespace ProjectCinema.Controllers
 
                 manager.Create(movie);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
            
-             return View();
+             return View("Index");
             
         }
 

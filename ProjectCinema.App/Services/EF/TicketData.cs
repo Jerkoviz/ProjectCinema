@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ProjectCinema.App.Domain;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,8 @@ namespace ProjectCinema.App.Services.EF
 
         public List<Ticket> GetAll()
         {
-            throw new NotImplementedException();
+            return mapper.Map<List<Ticket>>(context.Tickets.AsNoTracking());
+           
         }
 
         public Ticket GetById(int id)

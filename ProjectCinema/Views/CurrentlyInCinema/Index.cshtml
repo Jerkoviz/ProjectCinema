@@ -1,34 +1,24 @@
 ﻿@using ProjectCinema.Models
 @model CurrentlyInCinemaViewModel
 
-<form asp-controller="CurrentlyInCinema" asp-action="Create" method="post">
-    <div>
-        <label asp-for="MovieId">Choose movie</label>
-        <select asp-for="MovieId" asp-items="Model.Movies">
-            <option value="0">Choose movie</option>
-        </select>
-        <span asp-validation-for="MovieId"></span>
-    </div>
-    <div>
-        <label asp-for="ScreeningTimeId">Choose time</label>
-        <select asp-for="ScreeningTimeId" asp-items="Model.ScreeningTimes">
-            <option value="0">Choose time</option>
-        </select>
-        <span asp-validation-for="ScreeningTimeId"></span>
+    <div class="col-12 text-center text-white">
+        <form asp-controller="CurrentlyInCinema" asp-action="Create" method="post">
+            <div>
+                <label asp-for="MovieId" >Choose movie</label>
+                <select asp-for="MovieId" asp-items="Model.Movies">
+                    <option value="0">Choose movie</option>
+                </select>
+                <span asp-validation-for="MovieId"></span>
+            </div>
+            <div>
+                <label asp-for="ScreeningTimeId" >Choose time</label>
+                <select asp-for="ScreeningTimeId" asp-items="Model.ScreeningTimes">
+                    <option value="0">Choose time</option>
+                </select>
+                <span asp-validation-for="ScreeningTimeId"></span>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     </div>
 
-    <button type="submit">Submit</button>
-</form>
-
-<ul>
-    @if (Model.SearchMovieViewModel != null)
-    {
-        @foreach (var item in Model.SearchMovieViewModel.Results)
-        {
-            <li>Movie: @item.Movie.MovieName</li>
-            <li>Time of play: @item.ScreeningTime.MovieTime</li>
-            <li>Ticket price: @item.Ticket.Price</li>
-        }
-    }
     
-</ul>

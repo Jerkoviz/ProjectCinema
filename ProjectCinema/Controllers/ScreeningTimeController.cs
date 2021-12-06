@@ -13,25 +13,28 @@ namespace ProjectCinema.Controllers
     public class ScreeningTimeController : Controller
     {
         private readonly IMapper mapper;
-        private readonly IBaseManager<ScreeningTime> baseManager;
+        private readonly IBaseManager<ScreeningTime> manager;
 
-        public ScreeningTimeController(IMapper mapper, IBaseManager<ScreeningTime> baseManager)
+        public ScreeningTimeController(IMapper mapper, IBaseManager<ScreeningTime> manager)
         {
             this.mapper = mapper;
-            this.baseManager = baseManager;
+            this.manager = manager;
         }
         public ActionResult Index()
         {
+            var screeningTime = manager.GetAll();
+            var model = new ScreeningTimeViewModel { ScreeningTime = mapper.Map<List<ScreeningTimeViewModel>>(screeningTime) };
+
+            return View(model);
             
-            return View();
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public ActionResult Create(ScreeningTimeViewModel screeningTime)
+        public ActionResult Create(ScreeningTimeViewModel time)
         {
-            var model = mapper.Map<ScreeningTime>(screeningTime);
+            var model = mapper.Map<ScreeningTime>(time);
 
-            baseManager.Create(model);
+            manager.Create(model);
 
             return RedirectToAction("Index");
         }
