@@ -14,7 +14,9 @@ namespace ProjectCinema.App.Domain
         public string MinutesOfPlay { get; set; }
         public string Genre { get; set; }
         public string YearOfMaking { get; set; }
-        public Image Image { get; set; }        
+        public Image Image { get; set; }
+        public string Director { get; set; }
+        public string About { get; set; }
         public List<CinemaMovie> CinemaMovies { get; set; }
     }
 }

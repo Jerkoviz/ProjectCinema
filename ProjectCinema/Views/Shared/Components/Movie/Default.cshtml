@@ -1,19 +1,20 @@
 ﻿@using ProjectCinema.Models
 @model SearchMovieViewModel
+<link href="~/css/site.css" rel="stylesheet" />
 
-<section>
-    <div class="row">
-        <div class="col-12">
-            @foreach (var item in Model.Results)
-            {
-            <a href="" class="col-4" style="background-color: white; color:black; display:block; position:relative; height: 0; padding-bottom: 25%; padding-top: 10px; float: left; box-sizing: border-box" >
-                <div style="position: absolute; top:10px; left:10px; right:10px; bottom:10px; padding:19px; color: white">                    
-                    <span style="position:absolute; bottom:9px; left:10px; line-height: 0px"><img src="@("~/image/"+item.Image.ImageName)" asp-append-version="true" width="250" height="250" alt="@item.MovieName" /> </span>  
-                </div>
-                <h3> @item.MovieName</h3>
-            </a>
-            }
-
+<div class="row">
+    @foreach (var item in Model.CinemaRepertoires)
+    {        
+        <div class="col-12 col-lg-4 p-3">
+            <div class="text-center mt-2 mb-2">
+              <img src="/image/@item.ImageName"  asp-append-version="true" width="200" height="282" alt="@item.MovieName" />
+            </div>
+            <div class="col-12 text-center p-0" style="background-color: #efefef">
+                <h3> @item.MovieName</h3>                
+                <label class="btn" style="background-color: #991624; color: white">@item.DateTime.Value.ToShortDateString()</label><br />
+                <label class="btn" style="background-color: #991624; color: white">@item.DateTime.Value.ToShortTimeString()</label>
+            </div>
+            <h4 class="text-center" style="max-height: 20%"><a href="">More info</a></h4>
         </div>
-    </div>
-</section>
+    }
+</div>

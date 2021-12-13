@@ -13,17 +13,24 @@ namespace ProjectCinema.Views.Shared.Components.Movie
     {
         private readonly IMapper mapper;
         private readonly IBaseManager<App.Domain.Movie> movieManager;
+        private readonly IRepertoireManager repertoireManager;
 
-        public MovieViewComponent(IMapper mapper, IBaseManager<App.Domain.Movie> movieManager)
+        public MovieViewComponent(IMapper mapper, IBaseManager<App.Domain.Movie> movieManager, IRepertoireManager repertoireManager)
         {
             this.mapper = mapper;
             this.movieManager = movieManager;
+            this.repertoireManager = repertoireManager;
         }
         public IViewComponentResult Invoke()
         {
 
-            var movies = movieManager.GetAll();
-            var model = new SearchMovieViewModel { Results = mapper.Map<List<SearchResultViewModel>>(movies) };
+            var cinemaModel = repertoireManager.GetAllRepertoire();            
+
+            var model = new SearchMovieViewModel
+            {
+                CinemaRepertoires = mapper.Map<List<CinemaRepertoireViewModel>>(cinemaModel)
+            };
+
             return View(model);
 
         }

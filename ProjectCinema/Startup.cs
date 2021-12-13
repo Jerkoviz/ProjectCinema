@@ -56,6 +56,7 @@ namespace ProjectCinema
             services.AddTransient<IBaseCinemaCRUD<Ticket>, TicketData>();
             services.AddTransient<IBaseCinemaCRUD<ScreeningTime>, ScreeningTimeData>();
             services.AddTransient<IBaseCinemaCRUD<CurrentlyInCinema>, CurrentlyInCinemaData>();
+            services.AddTransient<IRepertoire, CurrentlyInCinemaData>();
 
             //Register application managers
             services.AddScoped(typeof(IBaseManager<MovieTheater>), typeof(MovieTheaterManager));
@@ -63,6 +64,7 @@ namespace ProjectCinema
             services.AddTransient<IBaseManager<Ticket>, TicketManager>();
             services.AddTransient<IBaseManager<ScreeningTime>, ScreeningTimeManager>();
             services.AddTransient<IBaseManager<CurrentlyInCinema>, CurrentlyInCinemaManager>();
+            services.AddTransient<IRepertoireManager, CurrentlyInCinemaManager>();
         }
 
         

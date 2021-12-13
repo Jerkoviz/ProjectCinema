@@ -1,24 +1,32 @@
 ﻿@using ProjectCinema.Models
 @model CurrentlyInCinemaViewModel
 
-    <div class="col-12 text-center text-white">
-        <form asp-controller="CurrentlyInCinema" asp-action="Create" method="post">
-            <div>
-                <label asp-for="MovieId" >Choose movie</label>
-                <select asp-for="MovieId" asp-items="Model.Movies">
-                    <option value="0">Choose movie</option>
-                </select>
-                <span asp-validation-for="MovieId"></span>
-            </div>
-            <div>
-                <label asp-for="ScreeningTimeId" >Choose time</label>
-                <select asp-for="ScreeningTimeId" asp-items="Model.ScreeningTimes">
-                    <option value="0">Choose time</option>
-                </select>
-                <span asp-validation-for="ScreeningTimeId"></span>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+<div class="col-12 text-center text-white">
+    <form asp-controller="CurrentlyInCinema" asp-action="Create" method="post">
+        <div>
+            <label asp-for="MovieId">Choose movie</label>
+            <select asp-for="MovieId" asp-items="Model.Movies">
+                <option value="0">Choose movie</option>
+            </select>
+            <span asp-validation-for="MovieId"></span>
+        </div>
+        <div>
+            <label asp-for="ScreeningTimeId">Choose time</label>
+            <select asp-for="ScreeningTimeId" asp-items="Model.ScreeningTimes">
+                <option value="0">Choose time</option>
+            </select>
+            <span asp-validation-for="ScreeningTimeId"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    @*<div class="col-xl-12">
+        <label asp-for="VehicleCertificates" class="col-sm-2"></label>
+        <div class="col-md-12 x-certificate-list">
+            <collection-editor items="Model.VehicleCertificates.ToArray()" name="VehicleCertificates" view-name="~/Areas/Vehicle/_VehicleCertificatePartial.cshtml"
+                               model-class-name="Transport.Areas.Vehicle.VehicleCertificateViewModel" controller-name="Vehicle" action-name="GetVehicleCertificateModelList"></collection-editor>
+            <div><span asp-validation-for="VehicleCertificates" class="text-danger"></span></div>
+        </div>
+    </div>*@
+</div>
 
     

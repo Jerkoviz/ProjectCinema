@@ -41,6 +41,13 @@ namespace ProjectCinema.AutoMapperProfiles
             //CurrentyInCinema
             CreateMap<CurrentlyInCinema, App.Services.Entities.CurrentlyInCinema>().ReverseMap();
             CreateMap<CurrentlyInCinema, CurrentlyInCinemaViewModel>().ReverseMap();
+
+            //CinemaRepertoire
+            CreateMap<CinemaRepertoireViewModel, CinemaRepertoire>().ReverseMap();
+            CreateMap<CinemaRepertoire, App.Services.Entities.CinemaRepertoire>().ReverseMap();
+
+            //Banner
+            CreateMap<Banner, BannerViewModel>().ReverseMap();
         }
     }
 }

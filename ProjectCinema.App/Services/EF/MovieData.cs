@@ -52,7 +52,16 @@ namespace ProjectCinema.App.Services.EF
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var movie = context.Movies.Where(m => m.MovieId == id).FirstOrDefault();
+
+            if (movie != null)
+            {
+                context.Entry(movie).State = EntityState.Deleted;
+                context.SaveChanges();
+
+                return true;
+            }
+            return false;
         }
 
         public List<Domain.Movie> GetAll()
@@ -86,7 +95,19 @@ namespace ProjectCinema.App.Services.EF
 
         public bool Update(Domain.Movie update)
         {
-            throw new NotImplementedException();
+            var movie = mapper.Map<Entities.Movie>(update);
+
+            if(update != null)
+            {
+                context.Movies.Attach(movie);
+                context.Entry(movie).State = EntityState.Modified;
+
+                context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

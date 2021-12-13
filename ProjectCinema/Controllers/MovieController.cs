@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjectCinema.App.Areas;
 using ProjectCinema.App.Domain;
+using ProjectCinema.App.Services;
 using ProjectCinema.Models;
 using System;
 using System.Collections.Generic;
@@ -16,20 +17,19 @@ namespace ProjectCinema.Controllers
     {
         private readonly IBaseManager<Movie> manager;
         private readonly IMapper mapper;
+        private readonly IRepertoireManager repertoireManager;
 
-        public MovieController(IBaseManager<App.Domain.Movie> manager, IMapper mapper)
+        public MovieController(IBaseManager<Movie> manager, IMapper mapper, IRepertoireManager repertoireManager) 
         {
             this.manager = manager;
             this.mapper = mapper;
+            this.repertoireManager = repertoireManager;
         }
 
         // GET: MovieController
         public IActionResult Index()
         {
-            var movies = manager.GetAll();
-            var model = new MovieViewModel { Movies = mapper.Map<List<MovieViewModel>>(movies) };           
-
-            return View(model);
+            return View();
         }
 
         // GET: MovieController/Details/5
@@ -37,21 +37,24 @@ namespace ProjectCinema.Controllers
         [HttpPost]
         public ActionResult Search(string searchTerm)
         {
-            searchTerm = string.IsNullOrWhiteSpace(searchTerm) ? "" : searchTerm;
+            searchTerm = string.IsNullOrWhiteSpace(searchTerm) ? string.Empty : searchTerm;
 
-            var movieModel = manager.GetBySearch(searchTerm);
-            var model = new SearchMovieViewModel { Results = mapper.Map<List<SearchResultViewModel>>(movieModel) };
+            var cinemaModel = repertoireManager.GetAllRepertoire();           
+            var model = new SearchMovieViewModel
+            {
+                CinemaRepertoires = mapper.Map<List<CinemaRepertoireViewModel>>(cinemaModel) 
+            };
             
             return RedirectToAction("Index", "Home", model);
         }
 
-        // GET: MovieController/Create
+      [HttpGet]
         public IActionResult GetAll()
         {
             var movies = manager.GetAll();
-            var model = new SearchMovieViewModel { Results = mapper.Map<List<SearchResultViewModel>>(movies) };
+            var model = new MovieViewModel { Movies = mapper.Map<List<MovieViewModel>>(movies) };
 
-            return View(model);
+            return View("Create", model);
         }
 
         // POST: MovieController/Create
@@ -60,17 +63,8 @@ namespace ProjectCinema.Controllers
         public ActionResult Create(MovieViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                string fileName = string.Empty;
-
-                if (Path.GetFileName(model.Image.ImageFile.FileName) == null)
-                {
-                    fileName = "newMovie";
-                }
-                fileName = Path.GetFileName(model.Image.ImageFile.FileName);
-
+            {               
                 var movie = mapper.Map<Movie>(model);
-
                 manager.Create(movie);
 
                 return RedirectToAction("Index");
@@ -81,7 +75,8 @@ namespace ProjectCinema.Controllers
         }
 
         // GET: MovieController/Edit/5
-        public ActionResult Update(int id)
+        [HttpGet]
+        public IActionResult Update(int id)
         {
             var getById= manager.GetById(id);
 
@@ -91,37 +86,37 @@ namespace ProjectCinema.Controllers
         // POST: MovieController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(MovieViewModel model)
         {
-            try
+           if(ModelState.IsValid)
             {
+                var movie = mapper.Map<Movie>(model);
+                var update = manager.Update(movie);
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
+            
                 return View();
-            }
-        }
-
-        // GET: MovieController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+            
         }
 
         // POST: MovieController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
+                if(id > 0)
+                {
+                    manager.Delete(id);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
-            }
+                return View("Error");
+            }            
         }
     }
 }

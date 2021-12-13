@@ -69,3 +69,46 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*.a-movie {
+    background-color: white;
+    color: black; 
+    display: block; 
+    position: relative; 
+    height: 10%; 
+    padding-bottom: 25%; 
+    padding-top: 10px; 
+    float: left; 
+    box-sizing: border-box;
+}
+
+.div-movie {
+    position: absolute; 
+    top:10px; 
+    left:10px; 
+    right:10px; 
+    bottom:10px; 
+    padding:19px; 
+    color: white;
+}
+
+.span-movie {
+  position: relative;
+  bottom: 9px; 
+  left: 10px; 
+  line-height: 0px;
+}*/
+.body-movie {
+    position: relative;  min-height: 100%; margin: 0; padding: 0; background-color: #991624;
+}
+
+.input-header{
+    max-width: 80%;
+}
+
+@media (min-width: 768px ) {
+    .banner {
+        padding: 20px;
+    }
+}
+   

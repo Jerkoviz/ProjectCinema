@@ -23,7 +23,7 @@ namespace ProjectCinema.App.Areas.Movie
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return movieData.Delete(id);
         }
 
         public List<Domain.Movie> GetAll()
@@ -43,7 +43,7 @@ namespace ProjectCinema.App.Areas.Movie
 
         public bool Update(Domain.Movie update)
         {
-            throw new NotImplementedException();
+            return movieData.Update(update);
         }
     }
 }

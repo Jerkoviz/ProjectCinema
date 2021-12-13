@@ -16,7 +16,9 @@ namespace ProjectCinema.App.Services.Entities
         public int MinutesOfPlay { get; set; }
         public string Genre { get; set; }
         public int YearOfMaking { get; set; }
-        public string Director { get; set; }        
+        public string Director { get; set; }
+        public string About { get; set; }
         public ICollection<CinemaMovie> CinemaMovies { get; set; }
+        public ICollection<CurrentlyInCinema> CurrentlyInCinemas { get; set; }
     }
 }

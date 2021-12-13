@@ -307,6 +307,9 @@ namespace ProjectCinema.App.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("About")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Director")
                         .HasColumnType("nvarchar(max)");
 
@@ -490,13 +493,13 @@ namespace ProjectCinema.App.Migrations
             modelBuilder.Entity("ProjectCinema.App.Services.Entities.CurrentlyInCinema", b =>
                 {
                     b.HasOne("ProjectCinema.App.Services.Entities.Movie", "Movie")
-                        .WithMany()
+                        .WithMany("CurrentlyInCinemas")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProjectCinema.App.Services.Entities.ScreeningTime", "ScreeningTime")
-                        .WithMany()
+                        .WithMany("CurrentlyInCinemas")
                         .HasForeignKey("ScreeningTimeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -547,11 +550,18 @@ namespace ProjectCinema.App.Migrations
             modelBuilder.Entity("ProjectCinema.App.Services.Entities.Movie", b =>
                 {
                     b.Navigation("CinemaMovies");
+
+                    b.Navigation("CurrentlyInCinemas");
                 });
 
             modelBuilder.Entity("ProjectCinema.App.Services.Entities.MovieTheater", b =>
                 {
                     b.Navigation("CinemaMovies");
+                });
+
+            modelBuilder.Entity("ProjectCinema.App.Services.Entities.ScreeningTime", b =>
+                {
+                    b.Navigation("CurrentlyInCinemas");
                 });
 
             modelBuilder.Entity("ProjectCinema.App.Services.Entities.Ticket", b =>

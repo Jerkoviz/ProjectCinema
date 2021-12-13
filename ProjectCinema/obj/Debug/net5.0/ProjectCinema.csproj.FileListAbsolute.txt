@@ -439,6 +439,10 @@ F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\ref\ProjectCinema.dll
 F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\ProjectCinema.pdb
 F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\ProjectCinema.genruntimeconfig.cache
 F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\TIcket\Index.cshtml.g.cs
-F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\Movie\Index.cshtml.g.cs
 F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\ScreeningTime\Index.cshtml.g.cs
 F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\CurrentlyInCinema\Index.cshtml.g.cs
+F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\Shared\Components\SearchHeader\Default.cshtml.g.cs
+F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\Shared\Components\Banner\Default.cshtml.g.cs
+F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\Movie\Index.cshtml.g.cs
+F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\Movie\Create.cshtml.g.cs
+F:\Projekti\ProjectCinema\ProjectCinema\obj\Debug\net5.0\Razor\Views\Movie\Update.cshtml.g.cs

@@ -1,0 +1,163 @@
+﻿@using ProjectCinema.Models
+@model MovieViewModel
+<div class="col-12 text-center text-white">
+    <form asp-controller="Movie" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="text-center">
+            <h2 class="p-3">Enter new movie</h2>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="MovieName" id="mov" required placeholder="Movie name" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" value="Minutes" asp-for="MinutesOfPlay" id="minutesOfPlay" required placeholder="Minutes of play"/>
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="Genre" required placeholder="Genre" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control"  asp-for="YearOfMaking" value="Year of making" required placeholder="Year of making" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="Director" required placeholder="Director" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="About" required placeholder="About movie" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">                    
+                    <input class="form-control" asp-for="Image.ImageFile" />
+                    <span asp-validation-for="Image.ImageFile" class="text-danger"></span>                    
+                </div>                
+            </div>
+        </div>
+        <button class="btn btn-light mx-auto mb-3" type="submit">Submit</button>
+    </form>
+</div>
+<table class="table text-white mt-2" id="movieTable">
+    <thead class="thead-light">
+        <tr>            
+            <th scope="col" class="text-center">Movie Name</th>
+            <th scope="col" class="text-center">Minutes of play</th>
+            <th scope="col" class="text-center">Genre</th>
+            <th scope="col" class="text-center">Year of making</th>
+            <th scope="col" class="text-center">Action</th>
+        </tr>
+    </thead>
+    @if (Model.Movies != null)
+    {
+
+        @foreach (var item in Model.Movies)
+        {
+            <tbody class="thead-light">
+                <tr>
+                    <td class="text-center">@item.MovieName</td>
+                    <td class="text-center">@item.MinutesOfPlay</td>
+                    <td class="text-center">@item.Genre</td>
+                    <td class="text-center">@item.YearOfMaking</td>
+                    <td class="text-center">
+                        <button type="submit" class="btn btn-light update-movie" onclick="createAndShowModal('/Movie/Update/@item.MovieId', 'modal-place-holder', 'update-movie-modal')">Edit movie</button>
+                        <form asp-controller="Movie" asp-action="Delete" asp-route-Id="@item.MovieId" method="post">
+                            <button type="submit" class="btn btn-light d-inline">Delete movie</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        }
+    }
+</table>
+
+@*modal-update*@
+<div id="update-movie-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <div class="input-group">
+                    <h4 class="modal-title mx-auto">Update movie</h4>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-controller="Movie" asp-action="Update" enctype="multipart/form-data">
+                <input type="hidden" asp-for="MovieId" />
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Movie name</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" value="@Model.MovieName" maxlength="100" asp-for="MovieName" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Minutes of play</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" value="@Model.MinutesOfPlay" maxlength="100" asp-for="MinutesOfPlay" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Genre</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" value="@Model.Genre" maxlength="100" asp-for="Genre" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="input-group">Year of making</label>
+                                <div class="control-label">
+                                    <input class="form-control" type="text" value="@Model.YearOfMaking" maxlength="100" asp-for="YearOfMaking" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Director</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" value="@Model.Director" maxlength="100" asp-for="Director" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">About a movie</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" value="@Model.About" asp-for="About" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Upload image</label>
+                                <div class="input-group">
+                                    <input class="form-control" asp-for="Image.ImageFile" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-light mx-auto" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

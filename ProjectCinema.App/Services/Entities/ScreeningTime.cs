@@ -12,6 +12,7 @@ namespace ProjectCinema.App.Services.Entities
     {
         public int ScreeningTimeId { get; set; }
         public DateTime? MovieTime { get; set; }
-        
+        public ICollection<CurrentlyInCinema> CurrentlyInCinemas{ get; set; }
+
     }
 }

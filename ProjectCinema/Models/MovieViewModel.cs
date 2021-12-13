@@ -14,7 +14,8 @@ namespace ProjectCinema.Models
         public string Genre { get; set; }
         public int YearOfMaking { get; set; }
         public Image Image { get; set; }
-
+        public string Director { get; set; }
+        public string About { get; set; }
         public SearchMovieViewModel SearchViewModel { get; set; }
         public List<MovieViewModel> Movies { get; set; }
     }
