@@ -2,22 +2,20 @@
 @model CurrentlyInCinemaViewModel
 
 <div class="col-12 text-center text-white">
-    <form asp-controller="CurrentlyInCinema" asp-action="Create" method="post">
-        <div>
-            <label asp-for="MovieId">Choose movie</label>
-            <select asp-for="MovieId" asp-items="Model.Movies">
+    <form class="pt-2" asp-controller="CurrentlyInCinema" asp-action="Create" method="post">
+        <div class="col-8 mx-auto pb-3">
+            <select class="form-control" asp-for="MovieId" asp-items="Model.Movies">
                 <option value="0">Choose movie</option>
             </select>
             <span asp-validation-for="MovieId"></span>
         </div>
-        <div>
-            <label asp-for="ScreeningTimeId">Choose time</label>
-            <select asp-for="ScreeningTimeId" asp-items="Model.ScreeningTimes">
+        <div class="col-8 mx-auto pb-3">
+            <select class="form-control" asp-for="ScreeningTimeId" asp-items="Model.ScreeningTimes">
                 <option value="0">Choose time</option>
             </select>
             <span asp-validation-for="ScreeningTimeId"></span>
         </div>
-        <button type="submit">Submit</button>
+        <button class="btn btn-light" type="submit">Submit</button>
     </form>
     @*<div class="col-xl-12">
         <label asp-for="VehicleCertificates" class="col-sm-2"></label>
@@ -28,5 +26,7 @@
         </div>
     </div>*@
 </div>
+
+
 
     

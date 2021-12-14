@@ -1,7 +1,7 @@
 ﻿@using ProjectCinema.Models
 @model HeaderViewModel
 <div class="text-center">
-    @*<div class="text-center pt-2">
+    <div class="text-center pt-2">
         <form data-ajax="true"
               data-ajax-method="post"
               asp-controller="Movie"
@@ -17,7 +17,7 @@
             </div>
         </form>
         <button class="btn btn-primary" id="search-movie" type="submit">Search Movie</button>
-    </div>*@
+    </div>
     <div class="col-12 m-3 text-center" style="background-color: #555555; width: 93.5%">
         <div class="col-12  pb-2">
             <select class="input-header mt-2" style="width: 200px" asp-items="Model.Movies">

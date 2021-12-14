@@ -9,30 +9,30 @@ namespace ProjectCinema.App.Areas.Ticket
 {
     public class TicketManager : IBaseManager<Domain.Ticket>
     {
-        private readonly IBaseCinemaCRUD<Domain.Ticket> ticket;
+        private readonly IBaseCinemaCRUD<Domain.Ticket> ticketData;
 
-        public TicketManager(IBaseCinemaCRUD<Domain.Ticket> ticket)
+        public TicketManager(IBaseCinemaCRUD<Domain.Ticket> ticketData)
         {
-            this.ticket = ticket;
+            this.ticketData = ticketData;
         }
         public bool Create(Domain.Ticket newInput)
         {
-            return ticket.Create(newInput);
+            return ticketData.Create(newInput);
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return ticketData.Delete(id);
         }
 
         public List<Domain.Ticket> GetAll()
         {
-            return ticket.GetAll();
+            return ticketData.GetAll();
         }
 
         public Domain.Ticket GetById(int id)
         {
-            throw new NotImplementedException();
+            return ticketData.GetById(id);
         }
 
         public List<Domain.Ticket> GetBySearch(string searchTerm)
@@ -42,7 +42,7 @@ namespace ProjectCinema.App.Areas.Ticket
 
         public bool Update(Domain.Ticket update)
         {
-            throw new NotImplementedException();
+            return ticketData.Update(update);
         }
     }
 }

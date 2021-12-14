@@ -36,18 +36,25 @@ namespace ProjectCinema.App.Services.EF
             {
                  newInput.Image.ImageFile.CopyToAsync(fileStream);
             }
-            var newMovie = mapper.Map<Entities.Movie>(newInput);
 
-            if (newMovie != null)
+            var newMovie = mapper.Map<Entities.Movie>(newInput);
+            var oldEntity = context.Movies.AsNoTracking().Where(m => m.MovieId == newInput.MovieId).FirstOrDefault();
+
+            if (oldEntity != null)
+            {
+                context.Attach(newMovie);
+                context.Entry(newMovie).State = EntityState.Modified;
+                context.SaveChanges();
+
+                return true;
+            }
+            else
             {
                 context.Add(newMovie);
                 context.SaveChanges();
 
                 return true;
             }
-
-            return false;
-
         }
 
         public bool Delete(int id)
@@ -77,6 +84,7 @@ namespace ProjectCinema.App.Services.EF
         {
             return mapper.Map<Domain.Movie>(
                 context.Movies.AsNoTracking()
+                .Include(i => i.Image)
                 .FirstOrDefault(m => m.MovieId == id));
         }
 

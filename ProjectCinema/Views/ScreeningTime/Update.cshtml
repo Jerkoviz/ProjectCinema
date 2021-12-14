@@ -1,0 +1,56 @@
+﻿@using ProjectCinema.Models
+@model ScreeningTimeViewModel
+
+<div class="col-12 text-center text-white">
+    <form asp-controller="ScreeningTime" asp-action="Update" method="post">
+        <input type="hidden" asp-for="ScreeningTimeId" />
+        <h3 class="p-3">Pick date and time</h3>
+        <div class="input-group mb-3">
+            <div class="col-8 mx-auto" id="datetimepicker">
+                <span><i class="fa fa-calendar"></i></span>
+                <input class="form-control" asp-for="MovieTime" value="@Model.MovieTime" data-val-required="The date field is required." />
+            </div>
+            <div><span asp-validation-for="MovieTime"></span></div>
+        </div>
+
+        <button type="submit" class="btn btn-light mb-3">Submit</button>
+    </form>
+</div>
+
+@if (Model.ScreeningTime != null)
+{
+    <table class="table text-white">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-center">Time of screening</th>
+                <th scope="col" class="text-center">Action</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.ScreeningTime)
+        {
+            <tbody>
+                <tr id="movieTime_@item.ScreeningTimeId">
+                    <td class="text-center">@item.MovieTime</td>
+                    <td class="text-center">
+                        <form asp-controller="ScreeningTime"
+                              asp-action="Update"
+                              asp-route-Id="@item.ScreeningTimeId" method="get">
+                            <button type="submit" class="btn btn-light mb-2">Edit dates</button>
+                        </form>
+                        <form asp-controller="ScreeningTime"
+                              asp-action="Delete"
+                              asp-route-Id="@item.ScreeningTimeId"
+                              method="post"
+                              data-ajax="true"
+                              data-ajax-confirm="Are you sure you want to delete @item.MovieTime from the base?"
+                              data-ajax-failure="Error while deleting."
+                              data-ajax-success="$('#movieTime_@item.ScreeningTimeId').remove();">
+                            <button type="submit" class="btn btn-light d-inline">Delete dates</button>
+                        </form>
+
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+}

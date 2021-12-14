@@ -1,6 +1,96 @@
-﻿@model MovieViewModel
+﻿@using ProjectCinema.Models
+@model MovieViewModel
+<div class="col-12 text-center text-white">
+    <form asp-controller="Movie" asp-action="Update" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="MovieId" />
+        <div class="text-center">
+            <h2 class="p-3">Enter new movie</h2>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="MovieName" value="@Model.MovieName" id="mov" required placeholder="Movie name" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" value="Minutes" asp-for="MinutesOfPlay" id="minutesOfPlay" required placeholder="Minutes of play" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="Genre" value="@Model.Genre" required placeholder="Genre" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" asp-for="YearOfMaking" value="Year of making" required placeholder="Year of making" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="Director" value="@Model.Director" required placeholder="Director" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" type="text" asp-for="About" value="@Model.About" required placeholder="About movie" />
+                </div>
+            </div>
+            <div class="col-8 pb-3 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" asp-for="Image.ImageFile" />
+                    <span asp-validation-for="Image.ImageFile" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-light mx-auto mb-3" type="submit">Submit</button>
+    </form>
+</div>
+
+@if (Model.Movies != null)
+{
+    <div class="tab-content">
+        <table class="table text-white mt-3">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="text-center">Movie Name</th>
+                    <th scope="col" class="text-center">Minutes of play</th>
+                    <th scope="col" class="text-center d-none d-sm-block">Genre</th>
+                    <th scope="col" class="text-center">Year of making</th>
+                    <th scope="col" class="text-center">Action</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model.Movies)
+            {
+                <tbody class="thead-light">
+                    <tr class="text-center" id="movie_@item.MovieId">
+                        <td>@item.MovieName</td>
+                        <td>@item.MinutesOfPlay</td>
+                        <td class=" d-none d-sm-block">@item.Genre</td>
+                        <td>@item.YearOfMaking</td>
+                        <td>
+                            <form asp-controller="Movie" asp-action="Update" asp-route-id="@item.MovieId" method="get">
+                                <button type="submit" class="btn btn-light mb-2" >Edit movie</button>
+                            </form>
+                            <form asp-controller="Movie"
+                                  asp-action="Delete"
+                                  asp-route-Id="@item.MovieId" method="post"
+                                  data-ajax="true"
+                                  data-ajax-confirm="Are you sure you want to delete @item.MovieName from the base?"
+                                  data-ajax-failure="Error while deleting."
+                                  data-ajax-success="$('#movie_@item.MovieId').remove();">
+                                <button type="submit" class="btn btn-light d-inline">Delete movie</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+}
 @*modal-update*@
-<div id="update-movie-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+<!--<div id="update-movie-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -17,9 +107,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="control-label">Movie name</label>
+                                <label class="control-label" asp-for="MovieName">Movie name</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" value="@Model.MovieName" maxlength="100" asp-for="MovieName" required />
+                                    <input class="form-control" type="text" value="@Model.MovieName"  asp-for="MovieName" required />
                                 </div>
                             </div>
                         </div>
@@ -27,7 +117,7 @@
                             <div class="form-group">
                                 <label class="control-label">Minutes of play</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" value="@Model.MinutesOfPlay" maxlength="100" asp-for="MinutesOfPlay" required />
+                                    <input class="form-control" type="number" value="@Model.MinutesOfPlay"  asp-for="MinutesOfPlay" required />
                                 </div>
                             </div>
                         </div>
@@ -35,7 +125,7 @@
                             <div class="form-group">
                                 <label class="control-label">Genre</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" value="@Model.Genre" maxlength="100" asp-for="Genre" required />
+                                    <input class="form-control" type="text" value="@Model.Genre"  asp-for="Genre" required />
                                 </div>
                             </div>
                         </div>
@@ -43,7 +133,7 @@
                             <div class="form-group">
                                 <label class="input-group">Year of making</label>
                                 <div class="control-label">
-                                    <input class="form-control" type="text" value="@Model.YearOfMaking" maxlength="100" asp-for="YearOfMaking" required />
+                                    <input class="form-control" type="number" value="@Model.YearOfMaking"  asp-for="YearOfMaking" required />
                                 </div>
                             </div>
                         </div>
@@ -51,7 +141,7 @@
                             <div class="form-group">
                                 <label class="control-label">Director</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" value="@Model.Director" maxlength="100" asp-for="Director" required />
+                                    <input class="form-control" type="text" value="@Model.Director" asp-for="Director" required />
                                 </div>
                             </div>
                         </div>
@@ -79,4 +169,4 @@
             </form>
         </div>
     </div>
-</div>
+</div>-->

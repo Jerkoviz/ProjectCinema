@@ -22,7 +22,7 @@ namespace ProjectCinema.App.Areas.ScreeningTime
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return screeningTimeData.Delete(id);
         }
 
         public List<Domain.ScreeningTime> GetAll()
@@ -32,7 +32,7 @@ namespace ProjectCinema.App.Areas.ScreeningTime
 
         public Domain.ScreeningTime GetById(int id)
         {
-            throw new NotImplementedException();
+            return screeningTimeData.GetById(id);
         }
 
         public List<Domain.ScreeningTime> GetBySearch(string searchTerm)

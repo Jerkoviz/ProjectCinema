@@ -48,29 +48,38 @@ namespace ProjectCinema.Controllers
             return RedirectToAction("Index", "Home", model);
         }
 
-      [HttpGet]
+        [HttpGet]
+        public IActionResult GetMovie(int id)
+        {
+            var movie = manager.GetById(id);
+            var model = mapper.Map<MovieViewModel>(movie);
+
+            return View("Index", model);
+        }
+
+        [HttpGet]
         public IActionResult GetAll()
         {
             var movies = manager.GetAll();
             var model = new MovieViewModel { Movies = mapper.Map<List<MovieViewModel>>(movies) };
 
-            return View("Create", model);
+            return View("Update", model);
         }
 
-        // POST: MovieController/Create
+        // POST: MovieController/Create/Update
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(MovieViewModel model)
+        public ActionResult Update(MovieViewModel model)
         {
             if (ModelState.IsValid)
             {               
                 var movie = mapper.Map<Movie>(model);
                 manager.Create(movie);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAll");
             }
-           
-             return View("Index");
+
+            return RedirectToAction("Home", "Index");
             
         }
 
@@ -78,27 +87,13 @@ namespace ProjectCinema.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var getById= manager.GetById(id);
+            var movie= manager.GetById(id);
+            var model = mapper.Map<MovieViewModel>(movie);
 
-            return RedirectToAction("Index", "Home");
+            return View("Update", model);
         }
 
-        // POST: MovieController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(MovieViewModel model)
-        {
-           if(ModelState.IsValid)
-            {
-                var movie = mapper.Map<Movie>(model);
-                var update = manager.Update(movie);
-
-                return RedirectToAction(nameof(Index));
-            }
-            
-                return View();
-            
-        }
+        
 
         // POST: MovieController/Delete/5
         [HttpPost]
@@ -111,7 +106,7 @@ namespace ProjectCinema.Controllers
                 {
                     manager.Delete(id);
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(GetAll));
             }
             catch
             {

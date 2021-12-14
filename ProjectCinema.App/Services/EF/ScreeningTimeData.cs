@@ -23,16 +23,36 @@ namespace ProjectCinema.App.Services.EF
         public bool Create(ScreeningTime newInput)
         {
             var screeningTime = mapper.Map<Entities.ScreeningTime>(newInput);
+            var oldEntity = context.ScreeningTimes.AsNoTracking()
+                .Where(s => s.ScreeningTimeId == newInput.ScreeningTimeId)
+                .FirstOrDefault();
 
-            context.Add(screeningTime);
-            context.SaveChanges();
+            if (oldEntity != null)
+            {
+                context.Attach(screeningTime);
+                context.Entry(screeningTime).State = EntityState.Modified;
+                context.SaveChanges();
 
-            return true;
+                return true;
+            }
+            else
+            {
+                context.Add(screeningTime);
+                context.SaveChanges();
+
+                return true;
+            }            
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var time = context.ScreeningTimes.Where(s => s.ScreeningTimeId == id);
+
+            context.Attach(time);
+            context.Entry(time).State = EntityState.Deleted;
+            context.SaveChanges();
+
+            return true;
         }
 
         public List<ScreeningTime> GetAll()
@@ -42,7 +62,7 @@ namespace ProjectCinema.App.Services.EF
 
         public ScreeningTime GetById(int id)
         {
-            throw new NotImplementedException();
+            return mapper.Map<ScreeningTime>(context.ScreeningTimes.Where(s => s.ScreeningTimeId == id).FirstOrDefault());
         }
 
         public List<ScreeningTime> GetBySearch(string searchTerm)

@@ -22,21 +22,43 @@ namespace ProjectCinema.Controllers
         }
         public ActionResult Index()
         {
+            ViewBag.Title = "Screening Time";
+                
+            return View();
+        }
+
+        public IActionResult GetAll()
+        {
             var screeningTime = manager.GetAll();
             var model = new ScreeningTimeViewModel { ScreeningTime = mapper.Map<List<ScreeningTimeViewModel>>(screeningTime) };
 
-            return View(model);
-            
+            return View("Update", model);
+        }
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var time = manager.GetById(id);
+            var model = mapper.Map<ScreeningTimeViewModel>(time);
+
+            return View("Update", model);
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public ActionResult Create(ScreeningTimeViewModel time)
+        public IActionResult Update(ScreeningTimeViewModel model)
         {
-            var model = mapper.Map<ScreeningTime>(time);
+            var time = mapper.Map<ScreeningTime>(model);
 
-            manager.Create(model);
+            manager.Create(time);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("GetAll");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            manager.Delete(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

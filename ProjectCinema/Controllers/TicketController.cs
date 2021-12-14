@@ -23,19 +23,50 @@ namespace ProjectCinema.Controllers
         public IActionResult Index()
         {
             ViewBag.Title = "Ticket";
+            
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
             var tickets = manager.GetAll();
             var model = new TicketViewModel { Tickets = mapper.Map<List<TicketViewModel>>(tickets) };
 
-            return View(model);
+            return View("Update", model);
+        }
+        
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var ticket = manager.GetById(id);
+            var model = mapper.Map<TicketViewModel>(ticket);
+
+            return View("Update", model);
         }
 
         [HttpPost]
-        public IActionResult Create(TicketViewModel ticket)
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Update(TicketViewModel model)
         {
-            var model = mapper.Map<Ticket>(ticket);
-            manager.Create(model);
+            if(ModelState.IsValid)
+            {
+                var ticket = mapper.Map<Ticket>(model);
+                manager.Create(ticket);
 
-            return RedirectToAction("Index");
+                return RedirectToAction(nameof(GetAll));
+            }
+
+            return RedirectToAction("Home", "Index");
+        }
+
+        [HttpPost]
+
+        public IActionResult Delete(int id)
+        {
+            manager.Delete(id);
+
+            return RedirectToAction(nameof(GetAll));
         }
     }
 }

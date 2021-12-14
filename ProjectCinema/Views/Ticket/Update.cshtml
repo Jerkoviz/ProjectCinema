@@ -1,0 +1,105 @@
+﻿@using ProjectCinema.Models
+@model TicketViewModel
+
+<div class="col-12 text-center text-white">
+    <form asp-controller="Ticket" asp-action="Update" method="post">
+        <input type="hidden" asp-for="TicketId" />
+        <div class="mb-3">
+            <h2 class="p-3">Enter tickets info</h2>
+            <div class="col-8 mx-auto mb-3">
+                <div class="input-group">
+                    <input class="form-control" value="price" asp-for="Price" placeholder="Ticket price" />
+                </div>
+            </div>
+            <div class="col-8 mx-auto">
+                <div class="input-group">
+                    <input class="form-control" value="ammount" asp-for="Ammount" placeholder="Ammount of tickets to sell" />
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-light mx-auto mb-3" type="submit">Submit</button>
+    </form>
+</div>
+@if (Model.Tickets != null)
+{
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-center">Ticket price</th>
+                <th scope="col" class="text-center">Number of avaliable tickets</th>
+                <th scope="col" class="text-center">Action</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.Tickets)
+        {
+            <tbody class="text-white">
+                <tr class="text-center" id="ticket_@item.TicketId">
+                    <td>@item.Price</td>
+                    <td>@item.Ammount</td>
+                    <td>
+                        <form asp-controller="Ticket"
+                              asp-action="Update"
+                              asp-route-Id="@item.TicketId" method="get">
+                            <button type="submit" class="btn btn-light mb-2">Edit ticket price</button>
+                        </form>                        
+                        <form asp-controller="Ticket"
+                              asp-action="Delete"
+                              asp-route-Id="@item.TicketId"
+                              method="post"
+                              data-ajax="true"
+                              data-ajax-confirm="Are you sure you want to delete @item.TicketId from the base?"
+                              data-ajax-failure="Error while deleting."
+                              data-ajax-success="$('#ticket@item.TicketId').remove();">
+                            <button type="submit" class="btn btn-light d-inline">Delete ticket</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        }
+        
+    </table>
+}
+
+    @*modal-update*@
+    <!--<div id="update-ticket-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <div class="input-group">
+                        <h4 class="modal-title mx-auto">Update movie</h4>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" asp-controller="Ticket" asp-action="Update">
+                    <input type="hidden" asp-for="TicketId" />
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="control-label" asp-for="Price">Ticket price</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" value="@Model.Price" asp-for="Price" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="control-label" asp-for="Ammount">Ammount of avaliable tickets</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" value="@Model.Ammount" asp-for="Ammount" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light mx-auto" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>-->
+
