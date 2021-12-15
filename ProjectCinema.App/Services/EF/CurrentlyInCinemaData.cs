@@ -90,7 +90,7 @@ namespace ProjectCinema.App.Services.EF
             var movie = context.Movies.AsNoTracking();
             movie = movie.Skip(Math.Max(0, movie.Count()-3));
 
-            return movie.Select(b => new Banner { MovieName = b.MovieName, About = b.About, ImageName = b.Image.ImageName }).ToList();
+            return movie.Select(b => new Banner { MovieName = b.MovieName, About = b.About, ImageName = b.Image.ImageName, MovieId = b.MovieId }).ToList();
             
         }
 

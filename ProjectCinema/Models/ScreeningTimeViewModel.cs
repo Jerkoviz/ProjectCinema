@@ -12,7 +12,7 @@ namespace ProjectCinema.Models
     {
         public int ScreeningTimeId { get; set; }
 
-        //[Range(typeof(DateTime), "1/12/2021", "1/1/2030")]
+        
         [BindProperty, DisplayFormat(DataFormatString = "{0:dd.MM.yyyyTHH:mm}", ApplyFormatInEditMode = true) ]
         [DataType(DataType.DateTime)]
         [DisplayName("Movie time")]

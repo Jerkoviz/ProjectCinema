@@ -18,41 +18,50 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active text-white">
-            <div class="row">
-                <div class="col-6">
-                    <img class="img-fluid" src="~/image/@first.ImageName" width="400" height="564" alt="First slide">
+            <div class="row banner">
+                <div class="col-6 pr-0" style="max-height: 500px">
+                    <img class="banner-img" src="~/image/@first.ImageName"  alt="First slide">
                 </div>
                 <div class="col-6" style="background-color:black">
                     <div class="banner" style="padding: 10% 10% ">
                         <h3>@first.MovieName</h3>
                         <p class="pt-3">@first.About</p>
                     </div>
+                    <form asp-controller="Movie" asp-action="GetMovie" asp-route-id="@first.MovieId" method="get" style=" padding-left: 10%;">
+                        <button type="submit" class="btn btn-outline-dark " style="color:white; font-size: 1.2rem">More info</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="carousel-item text-white">
-            <div class="row">
-                <div class="col-6">
-                    <img class="img-fluid" src="~/image/@second.ImageName" width="400" height="564" alt="Second slide">
+            <div class="row banner">
+                <div class="col-6 pr-0" style="max-height: 500px">
+                    <img class="banner-img" src="~/image/@second.ImageName"  alt="Second slide">
                 </div>
                 <div class="col-6" style="background-color:black">
-                    <div  class="banner" style="padding: 10% 10%">
+                    <div style="padding: 10% 10%">
                         <h4>@second.MovieName</h4>
-                        <p>@second.About </p>
+                        <p >@second.About </p>
                     </div>
+                    <form asp-controller="Movie" asp-action="GetMovie" asp-route-id="@second.MovieId" method="get" style=" padding-left: 10%;">
+                        <button type="submit" class="btn btn-outline-dark " style="color:white; font-size: 1.2rem">More info</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="carousel-item text-white">
-            <div class="row">
-                <div class="col-6">
-                    <img class="img-fluid" src="~/image/@third.ImageName" width="400" height="564" alt="Third slide">
+            <div class="row banner">
+                <div class="col-6 pr-0" style="max-height: 500px">
+                    <img class="banner-img" src="~/image/@third.ImageName" alt="Third slide">
                 </div>
                 <div class="col-6" style="background-color:black">
                     <div style="padding: 10% 10%">
                         <h4>@third.MovieName</h4>
                         <p>@third.About</p>
-                    </div>                    
+                    </div>  
+                    <form asp-controller="Movie" asp-action="GetMovie" asp-route-id="@third.MovieId" method="get" style=" padding-left: 10%;">
+                        <button type="submit" class="btn btn-outline-dark " style="color:white; font-size: 1.2rem">More info</button>
+                    </form>
                 </div>
             </div>
         </div>

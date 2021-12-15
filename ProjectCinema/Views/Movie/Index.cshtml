@@ -1,7 +1,14 @@
 ﻿@model MovieViewModel
-
-    <div class="text-white">
-        <h3>@Model.MovieName</h3>
-        <img src="/image/@Model.Image.ImageName" alt="Alternate Text" />
-        <p>@Model.About</p>
+ 
+<div class="text-white text-center">
+    <h3>@Model.MovieName</h3>
+    <div class="row">
+        <div class="col-4 text-left" style="margin-left:5%">
+            <label class="form-label">@Model.MinutesOfPlay mins</label>
+            <p>@Model.About</p>
+        </div>
+        <div class="col-6">
+            <img class="img-fluid" src="/image/@Model.Image.ImageName" width="400" height="592" alt="Alternate Text" />
+        </div>
     </div>
+</div>

@@ -12,10 +12,10 @@
             <div class="col-12 text-center p-0" style="background-color: #efefef">
                 <h3> @item.MovieName</h3>
                 <label class="btn" style="background-color: #991624; color: white">@item.DateTime.Value.ToShortDateString()</label><br />
-                <label class="btn" style="background-color: #991624; color: white">@item.DateTime.Value.ToShortTimeString()</label>
-            </div>
+                <label class="btn" style="background-color: #991624; color: white">@item.DateTime.Value.ToShortTimeString()</label>                
+            </div>  
             <form asp-controller="Movie" asp-action="GetMovie" asp-route-id="@item.MovieId" method="get">
-                <button type="submit" class="btn">More info</button>
+                <button type="submit" class="btn btn-outline-light float-right mb-1" style="color:black; font-size: 1.2rem">More info</button>
             </form>
             @*<h4 class="text-center" style="max-height: 20%; color: black" onclick="movie('@item.MovieId')" id="info"><a>More info</a></h4>*@
         </div>
