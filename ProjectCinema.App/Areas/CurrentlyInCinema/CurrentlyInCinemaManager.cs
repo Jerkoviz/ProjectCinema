@@ -51,7 +51,7 @@ namespace ProjectCinema.App.Areas.CurrentlyInCinema
         public IEnumerable<Banner> GetLastFive()
         {
             return repertoireData.GetLastFive();
-        }
+        }     
 
         public bool Update(Domain.CurrentlyInCinema update)
         {

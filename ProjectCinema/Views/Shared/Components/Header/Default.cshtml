@@ -1,27 +1,29 @@
-﻿<div  style="background-color: #333">
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
-        <div class="container ml-0">
-            <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Cinema Paradiso</a>
-            <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                Insert data
-            </button>
-            <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1" style="list-style: none">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="Movie" asp-action="GetAll">Add new movie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="Ticket" asp-action="GetAll">Create new tickets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="ScreeningTime" asp-action="GetAll">Create new dates</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="CurrentlyInCinema" asp-action="Index">Create currently in cinema</a>
-                    </li>
-                </ul>
+﻿<div class="row pb-0" style="background-color: #333">
+    <div class="col-12">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container ml-0 col-md-10">
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Cinema Paradiso</a>
+                <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    Insert data
+                </button>
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1" style="list-style: none">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Movie" asp-action="GetAll">Add new movie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Ticket" asp-action="GetAll">Add new tickets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="ScreeningTime" asp-action="GetAll">Add new dates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="CurrentlyInCinema" asp-action="Index">Create new time of movie projection</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </div>

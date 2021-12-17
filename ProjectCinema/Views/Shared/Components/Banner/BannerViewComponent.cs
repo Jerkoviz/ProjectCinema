@@ -22,8 +22,12 @@ namespace ProjectCinema.Views.Shared.Components.CurrentlyInCinema
         public IViewComponentResult Invoke()
         {
             var banner = repertoirManager.GetLastFive();
-             
-            var model = mapper.Map<List<BannerViewModel>>(banner);
+            List<BannerViewModel> model = null; 
+
+            if(banner.Count() != 0)
+            {
+                model = mapper.Map<List<BannerViewModel>>(banner);
+            }             
 
             return View(model);
         }
