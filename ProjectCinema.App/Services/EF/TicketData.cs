@@ -14,12 +14,13 @@ namespace ProjectCinema.App.Services.EF
     {
         private readonly IMapper mapper;
         private readonly CinemaDbContext context;
-
+        
         public TicketData(IMapper mapper, CinemaDbContext context)
         {
             this.mapper = mapper;
             this.context = context;
         }
+
         public bool Create(Ticket newInput)
         {
             var ticket = mapper.Map<Entities.Ticket>(newInput);
@@ -38,10 +39,6 @@ namespace ProjectCinema.App.Services.EF
                 context.SaveChanges();
                 return true;
             }
-
-            
-
-            
         }
 
         public bool Delete(int id)
@@ -56,6 +53,7 @@ namespace ProjectCinema.App.Services.EF
 
                 return true;
             }
+
             return false;
         }
 

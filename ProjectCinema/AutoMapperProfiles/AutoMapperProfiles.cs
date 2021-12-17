@@ -14,12 +14,11 @@ namespace ProjectCinema.AutoMapperProfiles
         public AutoMapperProfiles()
         {
             //MovieTheater
-            CreateMap<ProjectCinema.App.Services.Entities.MovieTheater, ProjectCinema.App.Domain.MovieTheater>().ReverseMap();
-            CreateMap<MovieTheaterViewModel, ProjectCinema.App.Domain.MovieTheater>().ReverseMap();
+            CreateMap<App.Services.Entities.MovieTheater, MovieTheater>().ReverseMap();
+            CreateMap<MovieTheaterViewModel, MovieTheater>().ReverseMap();
 
             //SearchResultViewModel <-> MovieTheater
-
-            CreateMap<SearchResultViewModel, App.Domain.MovieTheater>().ReverseMap();
+            CreateMap<SearchResultViewModel, MovieTheater>().ReverseMap();
 
             //MovieEntities <-> MovieDomain
             CreateMap<App.Services.Entities.Movie, Movie>().ReverseMap();
@@ -44,7 +43,6 @@ namespace ProjectCinema.AutoMapperProfiles
 
             //CinemaRepertoire
             CreateMap<CinemaRepertoireViewModel, CinemaRepertoire>().ReverseMap();
-            CreateMap<CinemaRepertoire, App.Services.Entities.CinemaRepertoire>().ReverseMap();
 
             //Banner
             CreateMap<Banner, BannerViewModel>().ReverseMap();
