@@ -27,7 +27,7 @@ namespace ProjectCinema.Views.Shared.Components.CurrentlyInCinema
             if(banner.Count() != 0)
             {
                 model = mapper.Map<List<BannerViewModel>>(banner);
-            }             
+            }           
 
             return View(model);
         }

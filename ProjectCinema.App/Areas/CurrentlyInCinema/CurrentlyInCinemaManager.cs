@@ -50,7 +50,30 @@ namespace ProjectCinema.App.Areas.CurrentlyInCinema
 
         public IEnumerable<Banner> GetLastFive()
         {
-            return repertoireData.GetLastFive();
+            var banners = repertoireData.GetLastFive();
+
+            if (repertoireData.GetLastFive().Count() == 1 || repertoireData.GetLastFive().Count() ==2)
+            {
+                banners = new List<Banner>
+                {
+                    repertoireData.GetLastFive().Last(),
+                    new Banner
+                    { 
+                        MovieId = 2,
+                        MovieName = string.Empty,
+                        ImageName = string.Empty,
+                        About = string.Empty
+                    },
+                    new Banner
+                    {
+                        MovieId = 3,
+                        MovieName = string.Empty,
+                        ImageName = string.Empty,
+                        About = string.Empty
+                    }
+                };
+            }
+            return banners;
         }     
 
         public bool Update(Domain.CurrentlyInCinema update)

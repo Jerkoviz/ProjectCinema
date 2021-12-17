@@ -1,5 +1,7 @@
 ﻿@model MovieViewModel
  
+@if(Model != null)
+{ 
 <div class="text-white text-center">
     <h3>@Model.MovieName</h3>
     <div class="row">
@@ -12,3 +14,5 @@
         </div>
     </div>
 </div>
+}
+
