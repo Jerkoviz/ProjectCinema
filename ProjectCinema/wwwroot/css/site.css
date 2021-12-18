@@ -99,7 +99,11 @@ body {
   line-height: 0px;
 }*/
 .body-movie {
-    position: relative;  min-height: 100%; margin: 0; padding: 0; background-color: #991624;
+    position: relative; 
+    min-height: 100%; 
+    margin: 0;
+    padding: 0; 
+    background-color: #991624;
 }
 
 .input-header{

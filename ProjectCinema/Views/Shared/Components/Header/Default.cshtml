@@ -1,29 +1,54 @@
-﻿<div class="row " style="background-color: #333">
-    <div class="col-12">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
-            <div class="container ml-0 col-md-10">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Cinema Paradiso</a>
-                <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    Insert data
-                </button>
-                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">                    
-                    <ul class="navbar-nav flex-grow-1" style="list-style: none">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Movie" asp-action="GetAll">Add new movie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Ticket" asp-action="GetAll">Add new tickets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="ScreeningTime" asp-action="GetAll">Add new dates</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="CurrentlyInCinema" asp-action="Index">Create new time of movie projection</a>
-                        </li>
-                    </ul>
+﻿<div class="row" style="background-color: #991624;">
+    <div class="col-12 col-lg-10 m-lg-auto" style="background-color: #333">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <form class="d-inline" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="btn btn-outline-dark text-white float-lg-right m-2">Register</button>
+            </form>
+
+            <form class="d-inline" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="btn btn-outline-dark text-white float-lg-right m-2">Log In</button>
+            </form>
+        }
+            else
+        { 
+        
+            <form class="d-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="btn btn-outline-dark text-white float-lg-right m-2">Log Out</button>
+            </form>
+        }
+        
+    </div>
+</div>
+<div class="row" style="background-color: #991624">   
+    <div class="col-12 col-lg-10 m-lg-auto">
+        <a class="navbar-brand text-white mt-2 m-sm-2" asp-area="" asp-controller="Home" asp-action="Index"><h1>Cinema Paradiso</h1></a>
+        @if (User.IsInRole("systemAdmin"))
+        {
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3 d-inline">
+                <div class="ml-0">
+                    <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        Insert data
+                    </button>
+                    <div class="navbar-collapse collapse  justify-content-between">
+                        <ul class="navbar-nav flex-grow-1" style="list-style: none">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Movie" asp-action="GetAll">Add new movie</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Ticket" asp-action="GetAll">Add new tickets</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="ScreeningTime" asp-action="GetAll">Add new dates</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="CurrentlyInCinema" asp-action="Index">Create new time of movie projection</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        }
     </div>
 </div>

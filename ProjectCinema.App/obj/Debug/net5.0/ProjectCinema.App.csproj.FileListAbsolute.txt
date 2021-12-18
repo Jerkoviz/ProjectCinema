@@ -281,6 +281,7 @@ F:\Projekti\ProjectCinema\ProjectCinema.App\bin\Debug\net5.0\refs\System.Xml.Xml
 F:\Projekti\ProjectCinema\ProjectCinema.App\bin\Debug\net5.0\refs\System.Xml.XPath.dll
 F:\Projekti\ProjectCinema\ProjectCinema.App\bin\Debug\net5.0\refs\System.Xml.XPath.XDocument.dll
 F:\Projekti\ProjectCinema\ProjectCinema.App\bin\Debug\net5.0\refs\WindowsBase.dll
+F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.csprojAssemblyReference.cache
 F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.GeneratedMSBuildEditorConfig.editorconfig
 F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.AssemblyInfoInputs.cache
 F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.AssemblyInfo.cs
@@ -289,4 +290,3 @@ F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.d
 F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ref\ProjectCinema.App.dll
 F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.pdb
 F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.genruntimeconfig.cache
-F:\Projekti\ProjectCinema\ProjectCinema.App\obj\Debug\net5.0\ProjectCinema.App.csprojAssemblyReference.cache
