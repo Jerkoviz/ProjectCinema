@@ -52,7 +52,13 @@ namespace ProjectCinema.App.Services.EF
                                                       join mov in movies on cur.MovieId equals mov.MovieId
                                                       join scr in screening on cur.ScreeningTimeId equals scr.ScreeningTimeId
                                                       join img in images on mov.ImageId equals img.ImageId
-                                                      select new CinemaRepertoire { MovieName = mov.MovieName, DateTime = scr.MovieTime, ImageName = img.ImageName, MovieId = mov.MovieId }).ToList();
+                                                      select new CinemaRepertoire 
+                                                      { 
+                                                          MovieName = mov.MovieName, 
+                                                          DateTime = scr.MovieTime,
+                                                          ImageName = img.ImageName, 
+                                                          MovieId = mov.MovieId 
+                                                      }).ToList();
 
                 //var innerJoinMovie = currently.Join(movies,
                 //    m => m.MovieId,
@@ -85,12 +91,40 @@ namespace ProjectCinema.App.Services.EF
             throw new NotImplementedException();
         }
 
+        public IEnumerable<CurrentlyInCinema> GetCurrentScreeningTimes()
+        {
+
+            var screeningTimes = context.ScreeningTimes.AsNoTracking();
+            var currently = context.CurrentlyInCinemas.AsNoTracking();
+            var movies = context.Movies.AsNoTracking();
+
+            IEnumerable<CurrentlyInCinema> join = (from cur in currently
+                                                   join scr in screeningTimes on cur.ScreeningTimeId equals scr.ScreeningTimeId
+                                                   join mov in movies on cur.MovieId equals mov.MovieId
+                                                   select new CurrentlyInCinema
+                                                   {
+                                                       MovieId = cur.MovieId,
+                                                       ScreeningTimeId = cur.ScreeningTimeId,
+                                                       MovieTime = scr.MovieTime,
+                                                       MovieName = mov.MovieName
+                                                   }).ToList();
+
+            return join;
+        }
+
         public IEnumerable<Banner> GetLastFive()
         {            
             var movie = context.Movies.AsNoTracking();
             movie = movie.Skip(Math.Max(0, movie.Count()-3));
 
-            return movie.Select(b => new Banner { MovieName = b.MovieName, About = b.About, ImageName = b.Image.ImageName, MovieId = b.MovieId }).ToList();
+            return movie.Select(b => 
+            new Banner 
+            { 
+                MovieName = b.MovieName,
+                About = b.About, 
+                ImageName = b.Image.ImageName, 
+                MovieId = b.MovieId 
+            }).ToList();
             
         }
 

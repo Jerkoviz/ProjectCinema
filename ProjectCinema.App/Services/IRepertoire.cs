@@ -11,5 +11,6 @@ namespace ProjectCinema.App.Services
     {
         IEnumerable<CinemaRepertoire> GetAllRepertoire();
         IEnumerable<Banner> GetLastFive();
+        IEnumerable<CurrentlyInCinema> GetCurrentScreeningTimes();
     }
 }

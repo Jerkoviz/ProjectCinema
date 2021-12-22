@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProjectCinema.App.Services.EF
 {
 
-    public class ScreeningTimeData : IBaseCinemaCRUD<ScreeningTime>
+    public class ScreeningTimeData : IBaseCinemaCRUD<ScreeningTime>, IScreeningTime
     {
         private readonly IMapper mapper;
         private readonly CinemaDbContext context;
@@ -68,6 +68,27 @@ namespace ProjectCinema.App.Services.EF
         public List<ScreeningTime> GetBySearch(string searchTerm)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<ScreeningTime> GetCurrentScreeningTimes()
+        {
+
+            var screeningTimes = mapper.Map<List<ScreeningTime>>(context.ScreeningTimes.AsNoTracking());
+            var currently = context.CurrentlyInCinemas.AsNoTracking();
+            var movies = context.Movies.AsNoTracking();
+
+            IEnumerable<CurrentlyInCinema> join = (from cur in currently
+                                                   join scr in screeningTimes on cur.ScreeningTimeId equals scr.ScreeningTimeId
+                                                   join mov in movies on cur.MovieId equals mov.MovieId
+                                                   select new CurrentlyInCinema
+                                                   {
+                                                       MovieId = cur.MovieId,
+                                                       ScreeningTimeId = cur.ScreeningTimeId,
+                                                       MovieTime = scr.MovieTime,
+                                                       MovieName = mov.MovieName
+                                                   }).ToList();
+
+            return (IEnumerable<ScreeningTime>)join;
         }
 
         public bool Update(ScreeningTime update)

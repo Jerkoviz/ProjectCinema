@@ -11,5 +11,6 @@ namespace ProjectCinema.App.Areas
     {
         IEnumerable<CinemaRepertoire> GetAllRepertoire();
         IEnumerable<Banner> GetLastFive();
+        IEnumerable<Domain.CurrentlyInCinema> GetCurrentScreeningTimes();
     }
 }

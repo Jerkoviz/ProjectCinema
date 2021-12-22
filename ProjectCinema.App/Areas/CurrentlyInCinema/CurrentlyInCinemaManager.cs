@@ -48,6 +48,11 @@ namespace ProjectCinema.App.Areas.CurrentlyInCinema
             return currentlyInCinemaData.GetBySearch(searchTerm);
         }
 
+        public IEnumerable<Domain.CurrentlyInCinema> GetCurrentScreeningTimes()
+        {
+            return repertoireData.GetCurrentScreeningTimes();
+        }
+
         public IEnumerable<Banner> GetLastFive()
         {
             var banners = repertoireData.GetLastFive();

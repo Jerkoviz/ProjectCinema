@@ -10,6 +10,8 @@ namespace ProjectCinema.App.Domain
     {
         public int CurrentlyInCinemaId { get; set; }
         public int MovieId { get; set; }
-        public int ScreeningTimeId { get; set; }        
+        public int ScreeningTimeId { get; set; }
+        public DateTime? MovieTime { get; set; }
+        public string MovieName { get; set; }
     }
 }
