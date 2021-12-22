@@ -6,7 +6,7 @@
                 <button type="submit" class="btn btn-outline-dark text-white float-lg-right m-2">Register</button>
             </form>
 
-            <form class="d-inline" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <form class="d-inline" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Page("/")" method="post">
                 <button type="submit" class="btn btn-outline-dark text-white float-lg-right m-2">Log In</button>
             </form>
         }

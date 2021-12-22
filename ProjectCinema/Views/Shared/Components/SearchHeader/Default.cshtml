@@ -1,6 +1,6 @@
 ﻿@using ProjectCinema.Models
 @model HeaderViewModel
-<div class="text-center">
+<div class="text-center col-10 m-auto p-0" style="background-color: #555555;">
     <div class="text-center pt-2">
         <form data-ajax="true"
               data-ajax-method="post"
@@ -12,13 +12,13 @@
                     <input type="text" name="searchTerm" id="term" class="form-control form-control-overide" />
                 </div>
                 <div class="col-sm-3 text-left">
-                    <button class="btn btn-primary" id="submit-search" type="submit">Search Movie</button>
+                    <button class="btn btn-light" id="submit-search" type="submit">Search Movie</button>
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary" id="search-movie" type="submit">Search Movie</button>
+        <button class="btn btn-light" id="search-movie" type="submit">Search Movie</button>
     </div>
-    <div class="col-12 m-3 text-center" style="background-color: #555555; width: 93.5%">
+    <div class="col-12 text-center" >
         <div class="col-12  pb-2">
             <select class="input-header mt-2" style="width: 200px" asp-items="Model.Movies">
                 <option value="0">Select a movie</option>

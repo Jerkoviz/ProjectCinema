@@ -93,7 +93,6 @@ namespace ProjectCinema.Controllers
             return View("Update", model);
         }
 
-        
 
         // POST: MovieController/Delete/5
         [HttpPost]

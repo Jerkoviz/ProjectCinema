@@ -37,7 +37,7 @@ namespace ProjectCinema.App.Services.EF
                  newInput.Image.ImageFile.CopyToAsync(fileStream);
             }
 
-            var newMovie = mapper.Map<Entities.Movie>(newInput);
+            var newMovie = mapper.Map<Movie>(newInput);
             var oldEntity = context.Movies.AsNoTracking().Where(m => m.MovieId == newInput.MovieId).FirstOrDefault();
 
             if (oldEntity != null)
@@ -75,6 +75,7 @@ namespace ProjectCinema.App.Services.EF
         {
             var movies = context.Movies.AsNoTracking()
                 .Include(to => to.Image).AsNoTracking()
+                .OrderBy(m => m.MovieName)
                 .ToList();
 
             return mapper.Map<List<Domain.Movie>>(movies);            
